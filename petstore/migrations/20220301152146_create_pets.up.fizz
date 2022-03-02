@@ -1,0 +1,6 @@
+create_table("pets") {
+    t.Column("id", "uuid", {primary: true})
+    t.Column("animal", "string", {"size": 100})
+    t.Column("price", "integer", {})
+    t.Column("age", "integer", {})
+}
