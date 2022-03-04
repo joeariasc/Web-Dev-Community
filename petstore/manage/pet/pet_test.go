@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"petstore/manage/pet"
+	"petstore/manage/tools"
 	"testing"
 	"time"
 
@@ -84,7 +85,7 @@ func Test_List(t *testing.T) {
 		}
 
 		if errs := tx.Create(&petsToSave); errs != nil {
-			r.Fail("error guardando una nueva mascota :(")
+			r.Fail("error guardando nuevas mascotas :(")
 		}
 
 		pets := pet.Pets{}
@@ -170,7 +171,7 @@ func Test_Find(t *testing.T) {
 			r.Fail("error listando los animales que son gatos :(")
 		}
 
-		res1, err := pet.PrettyStruct(pets1)
+		res1, err := tools.PrettyStruct(pets1)
 
 		if err != nil {
 			log.Fatal(err)
@@ -186,7 +187,7 @@ func Test_Find(t *testing.T) {
 			r.Fail("error listando los animales que cuestan entre 3 y 6")
 		}
 
-		res2, err := pet.PrettyStruct(pets2)
+		res2, err := tools.PrettyStruct(pets2)
 
 		if err != nil {
 			log.Fatal(err)
@@ -246,7 +247,7 @@ func Test_Update(t *testing.T) {
 				r.Fail("error actualizando la mascotas :(", err.Error())
 			}
 
-			res, errr := pet.PrettyStruct(dog)
+			res, errr := tools.PrettyStruct(dog)
 
 			if errr != nil {
 				log.Fatal(errr.Error())

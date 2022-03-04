@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.8
--- Dumped by pg_dump version 13.4
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,6 +19,26 @@ SET row_security = off;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: clients; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.clients (
+    id uuid NOT NULL,
+    name character varying(100) NOT NULL,
+    last_name character varying(100) NOT NULL,
+    email character varying(100) NOT NULL,
+    phone character varying(100) NOT NULL,
+    address character varying(100) NOT NULL,
+    gender character varying(100) NOT NULL,
+    age integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.clients OWNER TO postgres;
 
 --
 -- Name: pets; Type: TABLE; Schema: public; Owner: postgres
@@ -46,6 +66,14 @@ CREATE TABLE public.schema_migration (
 
 
 ALTER TABLE public.schema_migration OWNER TO postgres;
+
+--
+-- Name: clients clients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT clients_pkey PRIMARY KEY (id);
+
 
 --
 -- Name: pets pets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
