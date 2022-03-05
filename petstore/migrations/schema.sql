@@ -47,7 +47,7 @@ ALTER TABLE public.clients OWNER TO postgres;
 CREATE TABLE public.pets (
     id uuid NOT NULL,
     animal character varying(100) NOT NULL,
-    price integer NOT NULL,
+    price numeric(5,2) NOT NULL,
     age integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

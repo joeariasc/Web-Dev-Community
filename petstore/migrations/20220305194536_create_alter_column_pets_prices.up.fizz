@@ -1,0 +1,1 @@
+change_column("pets", "price", "float", {"scale": 2, "precision": 5})
