@@ -94,7 +94,7 @@ func Test_List(t *testing.T) {
 			r.Fail("error consultando todas las mascotas :(")
 		}
 
-		res, err := pet.PrettyStruct(pets)
+		res, err := tools.PrettyStruct(pets)
 
 		if err != nil {
 			log.Fatal(err)
