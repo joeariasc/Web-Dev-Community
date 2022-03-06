@@ -49,6 +49,22 @@ func SavePet(Pet pet.Pet) {
 	fmt.Println("All Pets", res)
 }
 
+func ListAllPets() string {
+	pets := pet.Pets{}
+
+	if err := db.All(&pets); err != nil {
+		log.Fatal("error consultando todas las mascotas :(", err.Error())
+	}
+
+	res, err := tools.PrettyStruct(pets)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return res
+}
+
 func SaveClient(Client client.Client) {
 	if err := db.Create(&Client); err != nil {
 		log.Fatal("error guardando el client", err.Error())
@@ -67,4 +83,20 @@ func SaveClient(Client client.Client) {
 	}
 
 	fmt.Println("All Clients", res)
+}
+
+func ListAllClients() string {
+	clients := client.Clients{}
+
+	if err := db.All(&clients); err != nil {
+		log.Fatal("error consultando todos los clientes :(", err.Error())
+	}
+
+	res, err := tools.PrettyStruct(clients)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return res
 }

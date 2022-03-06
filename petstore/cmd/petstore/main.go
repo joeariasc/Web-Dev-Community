@@ -20,10 +20,19 @@ func getInput(prompt string, r *bufio.Reader) (string, error) {
 
 func promptOptions() {
 	reader := bufio.NewReader(os.Stdin)
-	opt, _ := getInput("Choose an option (a - add pet, c - add client, s - add tip): ", reader)
+	opt, _ := getInput(`Welcome to PetStore!
+	Choose an option:
+	q - exit
+	ap - add pet
+	lp - list all pets
+	ac - add client
+	lc - list all clients: 
+	
+	so... what do you wanna to do?...`,
+		reader)
 
 	switch opt {
-	case "a":
+	case "ap":
 		newPet := pet.Pet{}
 		animal, _ := getInput("Pet - Animal: ", reader)
 		price, _ := getInput("Pet - Price: ", reader)
@@ -48,7 +57,12 @@ func promptOptions() {
 
 		connection.SavePet(newPet)
 
-	case "c":
+	case "lp":
+		pets := connection.ListAllPets()
+		fmt.Println("all pets: ", pets)
+		promptOptions()
+
+	case "ac":
 		newClient := client.Client{}
 		name, _ := getInput("Client - Name: ", reader)
 		lastName, _ := getInput("Client - Last Name: ", reader)
@@ -73,6 +87,18 @@ func promptOptions() {
 		newClient.Age = a
 
 		connection.SaveClient(newClient)
+
+	case "lc":
+		clients := connection.ListAllClients()
+		fmt.Println("all clients: ", clients)
+		promptOptions()
+
+	case "q":
+		os.Exit(0)
+
+	default:
+		fmt.Println("that was not a valid option...")
+		promptOptions()
 	}
 }
 
